@@ -5,6 +5,8 @@
 #
 #	Website		: http://www.MarcusFernstrom.com
 #
+#	Contributor	: iain eudailey | www.iaineudailey.com
+#
 #	Other		: Go easy on me, it's my first Python script  ;)
 #
 #	Copyright	: Marcus Fernstrom, 2014
