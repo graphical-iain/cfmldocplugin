@@ -249,11 +249,15 @@ class docifycfmlCommand(sublime_plugin.TextCommand):
 									functionName = k.group(1)
 
 								# Grabs the returntype of the function
-								k = re.findall(re.compile('.*?(?:public|private|remote|package)\s?|(\w*)\s?function', re.IGNORECASE), currentCodeBlock)
+								k = re.findall(re.compile('.*?(public|private|remote|package)\s?|(\w*)\s?function', re.IGNORECASE | re.DOTALL), currentCodeBlock)
 								if k:
-									print k
-									if k[1]:
-										functionReturnType = k[1]
+									print(k)
+									if re.findall(re.compile('.*?(public|private|remote|package)\s?', re.IGNORECASE | re.DOTALL), k[0][0]):
+										if k[1][1] != '':
+											functionReturnType = k[1][1]
+									else:
+										if k[0][1] != '':
+											functionReturnType = k[0][1]
 
 								# Grabs the functions returnformat, if it's defined
 								tagReturnFormat = re.match(re.compile('.*function.*returnformat\s?=\s?"(\w*)"', re.IGNORECASE | re.DOTALL), currentCodeBlock)
